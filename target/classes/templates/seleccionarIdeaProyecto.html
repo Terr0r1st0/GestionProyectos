@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet"  th:href="@{/css/style.css}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<title>Seleccionar Idea</title>
+</head>
+<body>
+	<div style="display: flex; align-items: center; justify-content: space-between; padding-left: 15px; padding-right: 60px; ">
+	    <h1 style="font-size: 30px; font-weight: bold; color:  #ccd424;"> <i class="fas fa-info-circle"></i> Ideas de Proyectos</h1>
+	</div>
+	<div class="table-responsive">
+	    <table class="table table-bordered table-hover">
+	        <thead style="background-color: #0c4b73; color: white;">
+	        <tr>
+	            <th><i class="fas fa-user"></i> ID Proyecto</th>
+	            <th><i class="far fa-id-card"></i> Titulo</th>
+	            <th><i class="fas fa-user"></i> Director</th>
+	            <th><i class="fas fa-user"></i> Evaluador</th>
+	            <th><i class="fas fa-user"></i> Estudiante</th>
+	            <th><i class="fas fa-link"></i> Enlace Proyecto</th>
+	            <th><i class="fas fa-cogs"></i> Acciones</th>
+	        </tr>
+	        </thead>
+	        <tbody>
+	        <tr th:each="proyecto : ${proyectos}">
+	            <td th:text="${proyecto.idProyecto}"></td>
+	            <td th:text="${proyecto.titulo}"></td>
+	            <td th:text="${proyecto.director.cedulaDocente}+' '+${proyecto.director.nombre}"></td>
+	            <td th:text="${proyecto.evaluador.cedulaDocente}+' '+${proyecto.evaluador.nombre}"></td>
+				<td th:text="${proyecto.estudiante != null ? proyecto.estudiante.nombre : ''}"></td>
+	            <td>
+	                <a th:href="${proyecto.url}" target="_blank" th:text="${proyecto.url}"></a>
+	            </td>
+				<td>
+				    <form th:action="@{/asignarEstudiante}" method="post" th:if="${proyecto.estudiante == null}">
+				        <input type="hidden" name="idProyecto" th:value="${proyecto.idProyecto}" />
+				        <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i></button>
+				    </form>
+				    <div th:if="${proyecto.estudiante != null}">
+				        <button type="button" class="btn btn-info" data-toggle="modal" th:data-target="'#agregarUrlModal' + ${proyecto.idProyecto}"><i class="fas fa-upload"></i></button>
+				        <button type="button" class="btn btn-warning" data-toggle="modal" th:data-target="'#editarUrlModal' + ${proyecto.idProyecto}"><i class="fas fa-pencil-alt"></i></button>
+				        <form th:action="@{/eliminarAsignacion}" method="post" style="display:inline;">
+				            <input type="hidden" name="idProyecto" th:value="${proyecto.idProyecto}" />
+				            <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+				        </form>
+				    </div>
+				</td>
+	        </tr>
+	        </tbody>
+	    </table>
+	    <center><a href="/inicioEstudiante" class="btn " style=" background-color: #ccd424;">
+	        <i class="fas fa-sign-out-alt"></i> Volver</a></center>
+	</div><br>
+	
+	<div th:each="proyecto : ${proyectos}">
+		
+	    <!-- Modal para agregar URL -->
+	    <div class="modal fade" th:id="'agregarUrlModal' + ${proyecto.idProyecto}" tabindex="-1" role="dialog" aria-labelledby="agregarUrlModalLabel" aria-hidden="true">
+	        <div class="modal-dialog" role="document">
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <h5 class="modal-title" id="agregarUrlModalLabel">Agregar URL de Proyecto</h5>
+	                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                        <span aria-hidden="true">&times;</span>
+	                    </button>
+	                </div>
+	                <div class="modal-body">
+	                    <form th:action="@{/agregarUrl}" method="post">
+	                        <div class="form-group">
+	                            <label for="url">URL del Proyecto</label>
+	                            <input type="url" class="form-control" id="url" name="url" required>
+	                        </div>
+	                        <input type="hidden" name="idProyecto" th:value="${proyecto.idProyecto}" />
+	                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar</button>
+	                    </form>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <!-- Modal para editar URL -->
+	    <div class="modal fade" th:id="'editarUrlModal' + ${proyecto.idProyecto}" tabindex="-1" role="dialog" aria-labelledby="editarUrlModalLabel" aria-hidden="true">
+	        <div class="modal-dialog" role="document">
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <h5 class="modal-title" id="editarUrlModalLabel">Editar URL de Proyecto</h5>
+	                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                        <span aria-hidden="true">&times;</span>
+	                    </button>
+	                </div>
+	                <div class="modal-body">
+	                    <form th:action="@{/editarUrl}" method="post">
+	                        <div class="form-group">
+	                            <label for="url">URL del Proyecto</label>
+	                            <input type="url" class="form-control" id="url" name="url" th:value="${proyecto.url}" required>
+	                        </div>
+	                        <input type="hidden" name="idProyecto" th:value="${proyecto.idProyecto}" />
+	                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar</button>
+	                    </form>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</body>
+</html>

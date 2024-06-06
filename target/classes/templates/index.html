@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet"  th:href="@{/css/style.css}">
+<title>Inicio</title>
+</head>
+<body>
+    <div class="container-fluid header">
+        <img id="logo" src="img/logouts.png" alt="Header UTS">
+        <h1 style="font-size: 24px; font-weight: bold;">Sistema de gestión y seguimiento de trabajos de grados UTS.</h1>
+    </div>
+
+    <div class="container-fluid main" style="display: flex; align-items: center;">
+        <h1 style="font-size: 24px; margin-right: auto;"><i class="fas fa-cogs"></i> Ingrese al sistema</h1>
+        <div style="margin-left: auto;">
+            <a href="/" class="btn btn-success"><i class="fas fa-home"></i> Inicio</a>
+            <a href="loginAdministrador" class="btn btn-success"><i class="fas fa-user-tie"></i> Administador</a>
+            <a href="loginEstudiante" class="btn btn-success"><i class="fas fa-graduation-cap"></i> Estudiante</a>
+            <a href="loginDocente" class="btn btn-success"><i class="fas fa-book"></i> Docente</a>
+            <a href="loginCoordinador" class="btn btn-success"><i class="fas fa-users"></i> Coordinación</a>
+        </div><br><br>
+    </div>
+    <div id="q"></div>
+    <footer class="footer mt-auto py-3" style="background-color: whitesmoke; ">
+        <div class="container text-center">
+            <span class="text-muted" style="color: whitesmoke;">© 2024. Todos los derechos reservados.</span>
+        </div>
+    </footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+

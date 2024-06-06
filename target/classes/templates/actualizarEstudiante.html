@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet"  th:href="@{/css/style.css}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<title>Actualizar Estudiante</title>
+</head>
+<body>
+	<div id="q" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <div style="background-color: #0c4b73; padding: 20px; border-radius: 10px; color:white;">
+        <h2 style="font-weight: bold;"><i class="fas fa-pencil-alt"></i> Actualizar Estudiante</h2>
+    <form method="post" action="/guardarEstudiante">
+		<input type="hidden" name="cedulaEstudiante" th:value="${estudiante.cedulaEstudiante}" />
+	    <div style="display: flex; flex-direction: column;">
+	        <label style="font-weight: bold;"><i class="far fa-id-card"></i> Cedula: </label>
+	        <input type="number" name="cedulaDocente" th:value="${estudiante.cedulaEstudiante}" readonly>
+	    </div>
+	    <div style="display: flex; flex-direction: column;">
+	        <label style="font-weight: bold;"><i class="fas fa-user"></i> Nombre: </label>
+	        <input type="text" name="nombre" th:value="${estudiante.nombre}" required>
+	    </div>
+	    <div style="display: flex; flex-direction: column;">
+	        <label style="font-weight: bold;"><i class="far fa-envelope"></i> Correo: </label>
+	        <input type="email" name="correo" th:value="${estudiante.correo}" required>
+	    </div>
+	    <div style="display: flex; flex-direction: column;">
+	        <label style="font-weight: bold;"><i class="fas fa-phone"></i> Telefono: </label>
+	        <input type="number" name="telefono" th:value="${estudiante.telefono}" required>
+	    </div>
+	    <div style="display: flex; flex-direction: column;">
+	        <label style="font-weight: bold;"><i class="fas fa-user"></i> Usuario: </label>
+	        <input type="text" name="usuario" th:value="${estudiante.usuario}" required>
+	    </div>
+	    <div style="display: flex; flex-direction: column;">
+	        <label for="id_cli" style="font-weight: bold;"><i class="fas fa-lock"></i> Contraseña: </label>
+	        <input type="password" name="contrasena" th:value="${estudiante.contrasena}" required>
+	    </div><br>
+	    <div style="display: flex; justify-content: center; align-items: center;">
+	        <button type="submit" class="btn btn-success" style="margin-right: 10px;"><i class="fas fa-save"></i> Guardar</button>
+	         <a href="/mostrarUsuarios" class="btn btn-info"><i class="fas fa-arrow-left"></i> Volver</a>
+	    </div>
+    </form>
+	
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</body>
+</html>

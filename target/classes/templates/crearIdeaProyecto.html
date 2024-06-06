@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet"  th:href="@{/css/style.css}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<title>Agregar Idea Proyecto</title>
+</head>
+<body>
+	<div id="q" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+        <div style="background-color: #0c4b73; padding: 20px; border-radius: 10px; color:white;">
+            <h2 style="font-weight: bold;"><i class="fas fa-user-plus"></i> Nueva Idea</h2>
+            <form th:action="@{/crearIdeaProyecto}" method="post">
+                <div style="display: flex; flex-direction: column;">
+                    <label style="font-weight: bold;"><i class="far fa-id-card"></i> Título: </label>
+                    <input type="text" name="titulo" required />
+                </div>
+                <div style="display: flex; flex-direction: column;">
+                    <label style="font-weight: bold;"><i class="fas fa-lock"></i> Director: </label>
+                    <select name="cedula_director" required>
+                        <option value="">--Seleccione--</option>
+                        <th:block th:each="docente : ${directores}">
+                            <option th:value="${docente.cedulaDocente}" th:text="${docente.nombre}"></option>
+                        </th:block>
+                    </select>
+                </div>
+                <div style="display: flex; flex-direction: column;">
+                    <label style="font-weight: bold;"><i class="fas fa-lock"></i> Evaluador: </label>
+                    <select name="cedula_evaluador" required>
+                        <option value="">--Seleccione--</option>
+                        <th:block th:each="docente : ${evaluadores}">
+                            <option th:value="${docente.cedulaDocente}" th:text="${docente.nombre}"></option>
+                        </th:block>
+                    </select>
+                </div><br>
+                <div style="display: flex; justify-content: center; align-items: center;">
+                    <button type="submit" class="btn btn-success" style="margin-right: 10px;"><i class="fas fa-save"></i> Guardar</button>
+                    <a th:href="@{/mostrarIdeaProyecto}" class="btn btn-info"><i class="fas fa-arrow-left"></i> Volver</a>
+                </div>
+            </form>
+        </div>
+    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet"  th:href="@{/css/style.css}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<title>Inicio Director</title>
+</head>
+<body>
+	<h1 class="text-center" style="font-size: 40px; font-weight: bold; color:  #ccd424;"><i class="fas fa-handshake"></i> Bienvenido,	<span th:text="${director}"></span> !</h1>
+	</div>
+	<div class="container-fluid main" style="display: flex; align-items: center;"><br><br>
+	    <h1 style="font-size: 24px; margin-right: auto;"><i class="fas fa-cogs"></i> Que desea realizar?</h1>
+	    <a id="boton" href="/" class="btn " style=" background-color: #ccd424;">
+	    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+	</div><br>
+	<div style="display: flex; align-items: center; justify-content: space-between; padding-left: 100px; padding-right: 100px;">
+	    <h1 style="font-size: 24px; margin-right: auto;">Calificar Proyectos</h1>
+	    <a href="/calificarDirectorProyecto" class="btn btn-success"><i class="fas fa-home"></i> Proyectos</a>
+	</div>
+	<br><br>
+	<div class="container-fluid main" style="display: flex; align-items: center; position: fixed; bottom: 0; width: 100%;">
+	    <br><br><br><h1 style="font-size: 24px; margin-right: auto;"><i class="fas fa-cogs"></i> Mas Informacion</h1>
+	    <div >
+	        <a style="margin-right:100px;" href="https://www.uts.edu.co/sitio/calendario-academico/" class="btn btn-success" target="_blank"><i class="fas fa-home"></i> Calendario Académico</a>
+	        <a style="margin-right:50px;" href="https://www.dropbox.com/sh/2937zx708zgncsw/AAA0pUsWY74w6GHJ4DksaTa1a/DOCUMENTOS%20DE%20GRADO?dl=0&subfolder_nav_tracking=1" class="btn btn-success" target="_blank"><i class="fas fa-user-tie"></i> Formatos de Grado</a>
+	    </div><br><br><br>
+	</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</body>
+</html>

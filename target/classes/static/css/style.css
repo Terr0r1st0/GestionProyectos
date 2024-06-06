@@ -1,0 +1,37 @@
+.header {
+    display: flex;
+    align-items: center;
+    color:  #ccd424;
+    background-color: whitesmoke;
+}
+
+#logo {
+    width: 130px;
+    height: auto;
+    float: left;
+    margin-right: 200px; 
+}
+
+.main {
+    text-align: center;
+    background-color: #0c4b73 ;
+    color: whitesmoke;
+}
+
+#q{
+    background-image: url('../img/uts3.jpg');
+    background-size: cover; 
+    background-position: center;
+    width: 100%; 
+    height: 500px;
+}
+
+.aprobado {
+    color: green;
+    font-weight: bold;
+}
+
+.rechazado {
+    color: red;
+    font-weight: bold;
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet"  th:href="@{/css/style.css}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<title>Calificar Proyecto Evaluador</title>
+</head>
+<body>
+	<div style="display: flex; align-items: center; justify-content: space-between; padding-left: 15px; padding-right: 60px;">
+	    <h1 style="font-size: 30px; font-weight: bold; color: #ccd424;"> <i class="fas fa-info-circle"></i> Ideas de Proyectos</h1>
+	</div>
+	<div class="table-responsive">
+	    <table class="table table-bordered table-hover">
+	        <thead style="background-color: #0c4b73; color: white;">
+	            <tr>
+	                <th><i class="fas fa-user"></i> ID Proyecto</th>
+	                <th><i class="far fa-id-card"></i> Titulo</th>
+	                <th><i class="fas fa-user"></i> Estado Director</th>
+	                <th><i class="fas fa-user"></i> Estado Evaluador</th>
+	                <th><i class="fas fa-user"></i> Estudiante</th>
+	                <th><i class="fas fa-link"></i> Enlace Proyecto</th>
+	                <th><i class="fas fa-cogs"></i> Acciones</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr th:each="proyecto : ${proyectos}">
+	                <td th:text="${proyecto.idProyecto}">ID Proyecto</td>
+	                <td th:text="${proyecto.titulo}">Titulo</td>
+	                <td th:text="${proyecto.estadoDirector}" >Estado Director</td>
+	                <td th:text="${proyecto.estadoEvaluador}" >Estado Evaluador</td>
+					<td>
+			            <span th:if="${proyecto.estudiante != null}" th:text="${proyecto.estudiante.nombre}"></span>
+			            <span th:unless="${proyecto.estudiante != null}">No asignado</span>
+			        </td>
+	                <td><a th:href="${proyecto.url}" target="_blank" th:text="${proyecto.url}">Enlace Proyecto</a></td>
+	                <td>
+	                    <form th:action="@{/actualizarEstadoProyecto}" method="post">
+	                        <input type="hidden" name="idproyecto" th:value="${proyecto.idProyecto}">
+	                        <input type="hidden" name="tipoEstado" value="evaluador">
+	                        <button type="submit" name="accion" value="aprobar" class="btn btn-success"><i class="fas fa-check-circle"></i></button>
+	                        <button type="submit" name="accion" value="rechazar" class="btn btn-danger"><i class="fas fa-times-circle"></i></button>
+	                        <button type="submit" name="accion" value="eliminar" class="btn btn-warning"><i class="fas fa-trash-alt"></i></button>
+	                    </form>
+	                </td>
+	            </tr>
+	        </tbody>
+	    </table>
+	</div>
+	<center><a id="boton" href="/inicioEvaluador" class="btn" style="background-color: #ccd424;">
+	    <i class="fas fa-sign-out-alt"></i> Volver</a></center>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</body>
+</html>
