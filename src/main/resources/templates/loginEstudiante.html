@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet"  th:href="@{/css/style.css}">
+<title>Login Estudiante</title>
+</head>
+<body>
+	<div id="q" class="container-fluid" style="height: 100vh;">
+	    <div class="row justify-content-center align-items-center" style="height: 100vh;">
+	        <div class="card" style="width: 30rem; background-color: #0c4b73; border-radius: 10px;"><br>
+	            <h1 class="text-center" style="font-weight: bold; color: white;"><i class="fas fa-handshake"></i> Bienvenido Estudiante</h1>
+	            <form class="text-center" action="/loginEstudiante" method="post"><br>
+	                <label for="usuario" style="font-weight: bold; color: white;"><i class="fas fa-user"></i> Usuario:</label><br>
+	                <input type="text" name="usuario" required><br><br>
+	                <label for="contrasena" style="font-weight: bold; color: white;"><i class="fas fa-lock"></i> Contraseña:</label><br>
+	                <input type="password" name="contrasena" required><br><br>
+	                <button type="submit" class="btn btn-success"><i class="fas fa-door-open"></i> Iniciar Sesión</button>
+	                <a th:href="@{/}" class="btn btn-success"><i class="fas fa-arrow-left"></i> Volver</a><br><br>
+	            </form>
+	        </div>
+	    </div>
+	</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</body>
+</html>

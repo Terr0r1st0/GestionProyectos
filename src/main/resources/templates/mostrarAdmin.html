@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet"  th:href="@{/css/style.css}">
+<title>Mostrar Usuarios</title>
+</head>
+<body>
+	<div style="display: flex; align-items: center; justify-content: space-between; padding-left: 15px; padding-right: 60px;">
+	    <h1 style="font-size: 30px; font-weight: bold; color: #ccd424;"><i class="fas fa-info-circle"></i> Información de Usuarios</h1>
+	    <div>
+	        <div class="btn-group mr-2">
+				<button style="background-color: #ccd424;" type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	                <i class="fas fa-users"></i> Crear Usuarios
+	            </button>
+	            <div class="dropdown-menu">
+		            <a class="dropdown-item" th:href="@{/mostrarUsuarios/agregarDocente}"><i class="fas fa-user-plus"></i> Crear Docente</a>
+		            <a class="dropdown-item" th:href="@{/mostrarUsuarios/agregarEstudiante}"><i class="fas fa-user-plus"></i> Crear Estudiante</a>
+		            <a class="dropdown-item" th:href="@{/mostrarUsuarios/agregarCoordinador}"><i class="fas fa-user-plus"></i> Crear Coordinador</a>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<div class="table-responsive">
+	    <table class="table table-bordered table-hover">
+	        <thead style="background-color: #0c4b73; color: white;">
+	            <tr>
+	                <th><i class="fas fa-user"></i> Tipo Usuario</th>
+	                <th><i class="far fa-id-card"></i> Cédula</th>
+	                <th><i class="fas fa-user"></i> Nombre</th>
+	                <th><i class="far fa-envelope"></i> Correo</th>
+	                <th><i class="fas fa-phone"></i> Telefono</th>
+	                <th><i class="fas fa-user"></i> Usuario</th>
+	                <th><i class="fas fa-lock"></i> Contraseña</th>
+	                <th><i class="fas fa-cogs"></i> Acciones</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr th:each="docente : ${docentes}">
+	                <td th:text="'Docente'+' '+${docente.rol}"></td>
+	                <td th:text="${docente.cedulaDocente}"></td>
+	                <td th:text="${docente.nombre}"></td>
+	                <td th:text="${docente.correo}"></td>
+	                <td th:text="${docente.telefono}"></td>
+	                <td th:text="${docente.usuario}"></td>
+	                <td th:text="${docente.contrasena}"></td>
+	                <td>
+	                    <a th:href="@{'/actualizarUsuario/' + ${docente.cedulaDocente}}" class="btn btn-warning"><i class="fas fa-pencil-alt"></i> Actualizar</a>
+	                    <a th:href="@{'/eliminarUsuario/' + ${docente.cedulaDocente}}" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</a>
+	                </td>
+	            </tr>
+	            <tr th:each="estudiante : ${estudiantes}">
+	                <td>Estudiante</td>
+	                <td th:text="${estudiante.cedulaEstudiante}"></td>
+	                <td th:text="${estudiante.nombre}"></td>
+	                <td th:text="${estudiante.correo}"></td>
+	                <td th:text="${estudiante.telefono}"></td>
+	                <td th:text="${estudiante.usuario}"></td>
+	                <td th:text="${estudiante.contrasena}"></td>
+	                <td>
+	                    <a th:href="@{'/actualizarUsuario/' + ${estudiante.cedulaEstudiante}}" class="btn btn-warning"><i class="fas fa-pencil-alt"></i> Actualizar</a>
+	                    <a th:href="@{'/eliminarUsuario/' + ${estudiante.cedulaEstudiante}}" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</a>
+	                </td>
+	            </tr>
+	            <tr th:each="coordinador : ${coordinadores}">
+	                <td>Coordinador</td>
+	                <td th:text="${coordinador.cedulaCoordinador}"></td>
+	                <td th:text="${coordinador.nombre}"></td>
+	                <td th:text="${coordinador.correo}"></td>
+	                <td th:text="${coordinador.telefono}"></td>
+	                <td th:text="${coordinador.usuario}"></td>
+	                <td th:text="${coordinador.contrasena}"></td>
+	                <td>
+	                    <a th:href="@{'/actualizarUsuario/'+${coordinador.cedulaCoordinador}}" class="btn btn-warning"><i class="fas fa-pencil-alt"></i> Actualizar</a>
+	                    <a th:href="@{'/eliminarUsuario/'+${coordinador.cedulaCoordinador}}" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Eliminar</a>
+	                </td>
+	            </tr>
+	        </tbody>
+	    </table>
+	    <center>
+	        <a id="boton" href="/" class="btn" style="background-color: #ccd424;">
+	            <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+	        </a>
+	    </center>
+	</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</body>
+</html>
